@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>इंदापूर तालुका गावांची रेशन KYC pending यादी</title>
+   <meta name="description" content="">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://krishnawaghmode.github.io/indapur-ekyc-pending">
+<meta property="og:type" content="website">
+<meta property="og:title" content="इंदापूर तालुका गावांची रेशन KYC pending यादी">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://krishnawaghmode.github.io/indapur-ekyc-pending/ration.jpeg">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="krishnawaghmode.github.io">
+<meta property="twitter:url" content="https://krishnawaghmode.github.io/indapur-ekyc-pending">
+<meta name="twitter:title" content="इंदापूर तालुका गावांची रेशन KYC pending यादी">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://krishnawaghmode.github.io/indapur-ekyc-pending/ration.jpeg">
+    <style>
+      :root {
+        --primary-color: #4caf50;
+        --primary-hover: #45a049;
+        --primary-active: #2e7d32;
+        --border-color: #ddd;
+        --text-color: #333;
+        --light-bg: #f5f5f5;
+        --white: #fff;
+        --pending-color: #ff9800;
+        --success-color: #4caf50;
+        --error-color: #f44336;
+        --table-even: #f9f9f9;
+        --table-hover: #f1f1f1;
+        --table-header: #f2f2f2;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 15px;
+        background-color: var(--light-bg);
+        color: var(--text-color);
+        line-height: 1.6;
+        font-size: 16px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: var(--white);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        /* text-align: center;
+        margin-bottom: 20px;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        color: var(--primary-active); */
+        font-size: 20px;
+        /* margin: 0 0 15px 0; */
+        text-align: center;
+        color: #333;
+      }
+
+      h1 span {
+        /* font-weight: normal; */
+        color: var(--text-color);
+      }
+
+      .control-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 10px;
+      }
+
+      @media (min-width: 768px) {
+        .control-panel {
+          flex-direction: row;
+          align-items: flex-end;
+        }
+      }
+
+      .custom-select {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .select-header {
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background-color: var(--white);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .select-header:hover {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+      }
+
+      .select-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background-color: var(--white);
+        max-height: 250px;
+        overflow-y: auto;
+        display: none;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        margin-top: 5px;
+      }
+
+      .select-options.visible {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .search-box {
+        padding: 12px;
+        width: calc(100% - 24px);
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        outline: none;
+        margin: 8px 12px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+      }
+
+      .search-box:focus {
+        border-bottom-color: var(--primary-color);
+      }
+
+      .select-option {
+        padding: 12px 15px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .select-option:hover {
+        background-color: rgba(76, 175, 80, 0.1);
+      }
+
+      .select-option.selected {
+        background-color: rgba(76, 175, 80, 0.2);
+        font-weight: 600;
+      }
+
+      .search-container {
+        flex: 1;
+        min-width: 0;
+      }
+
+      #search {
+        padding: 12px 15px;
+        width: 100%;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.3s;
+      }
+
+      #search:focus {
+        border-color: var(--primary-color);
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+      }
+
+      .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        margin-top: 10px;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px;
+      }
+
+      th,
+      td {
+        border: 1px solid var(--border-color);
+        padding: 12px 15px;
+        text-align: left;
+      }
+
+      th {
+        background-color: var(--table-header);
+        position: sticky;
+        top: 0;
+        font-weight: 600;
+        color: var(--text-color);
+      }
+
+      tr:nth-child(even) {
+        background-color: var(--table-even);
+      }
+
+      tr:hover {
+        background-color: var(--table-hover);
+      }
+
+      .status-pending {
+        color: var(--pending-color);
+        font-weight: 600;
+      }
+
+      .status-success {
+        color: var(--success-color);
+        font-weight: 600;
+      }
+
+      .loading,
+      .error {
+        text-align: center;
+        padding: 30px;
+        margin: 20px 0;
+        border-radius: 6px;
+      }
+
+      .loading {
+        color: #666;
+        background-color: rgba(0, 0, 0, 0.02);
+      }
+
+      .error {
+        color: var(--error-color);
+        font-weight: 600;
+        background-color: rgba(244, 67, 54, 0.05);
+        border: 1px solid rgba(244, 67, 54, 0.2);
+      }
+
+      .arrow {
+        border: solid var(--text-color);
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 4px;
+        transform: rotate(45deg);
+        transition: transform 0.3s;
+        margin-left: 10px;
+      }
+
+      .arrow.open {
+        transform: rotate(-135deg);
+      }
+
+      .results-info {
+        font-size: 14px;
+        color: #dd3a3a;
+        text-align: left;
+        margin-left: 5px;
+      }
+
+      /* Loading spinner */
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid var(--primary-color);
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 15px;
+      }
+
+      /* Mobile optimizations */
+      @media (max-width: 767px) {
+        .container {
+          padding: 15px;
+        }
+
+        th,
+        td {
+          padding: 10px 12px;
+          font-size: 14px;
+        }
+
+        .select-header,
+        #search {
+          padding: 10px 12px;
+        }
+
+        .loading,
+        .error {
+          padding: 20px 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 10px;
+        }
+
+        th,
+        td {
+          padding: 8px 10px;
+          font-size: 13px;
+        }
+
+        .select-option {
+          padding: 10px 12px;
+        }
+      }
+
+      /* Print styles */
+      @media print {
+        body {
+          background: none;
+          padding: 0;
+          font-size: 12pt;
+        }
+
+        .container {
+          box-shadow: none;
+          padding: 0;
+          max-width: 100%;
+        }
+
+        .control-panel,
+        #search,
+        .custom-select {
+          display: none;
+        }
+
+        table {
+          min-width: 100%;
+        }
+
+        th,
+        td {
+          padding: 8px 10px;
+        }
+      }
+    </style>
+     <link rel="stylesheet" href="marquee.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        <span id="file-title" style="color: #d57914ee;text-decoration: underline;">इंदापूर तालुका</span> 
+        गावांची रेशन KYC pending यादी
+      </h1> <a href="index.html" 
+      style="display: flex; align-items: center; justify-content: center; padding: 5px 5px;
+             background-color: #2196F3; color: white; text-decoration: none; border-radius: 6px;
+             transition: all 0.3s; text-align: center; font-size: 15px; 
+             box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-weight: bold;
+             margin: 0; border: none; cursor: pointer;"
+      onmouseover="this.style.backgroundColor='#0b7dda';this.style.transform='translateY(-3px)';this.style.boxShadow='0 4px 8px rgba(0,0,0,0.15)'"
+      onmouseout="this.style.backgroundColor='#2196F3';this.style.transform='none';this.style.boxShadow='0 2px 5px rgba(0,0,0,0.1)'">
+     <!-- होम -->
+     मुख्यपृष्ठ
+   </a>
+      <p style=" text-align: center; ">अधिक माहितीसाठी संपर्क करा 
+
+        <!-- <a href="tel:8600064713" style=" font-weight: bold; color: #eb0e0e; ">8600064713</a>  -->
+        <a href="tel:8600064713" rel="noopener" style=" font-weight: bold; color: #eb0e0e; ">
+ <svg height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+<path style="fill:#EDEDED;" d="M0,512l35.31-128C12.359,344.276,0,300.138,0,254.234C0,114.759,114.759,0,255.117,0
+    S512,114.759,512,254.234S395.476,512,255.117,512c-44.138,0-86.51-14.124-124.469-35.31L0,512z"></path>
+<path style="fill:#55CD6C;" d="M137.71,430.786l7.945,4.414c32.662,20.303,70.621,32.662,110.345,32.662
+    c115.641,0,211.862-96.221,211.862-213.628S371.641,44.138,255.117,44.138S44.138,137.71,44.138,254.234
+    c0,40.607,11.476,80.331,32.662,113.876l5.297,7.945l-20.303,74.152L137.71,430.786z"></path>
+<path style="fill:#FEFEFE;" d="M187.145,135.945l-16.772-0.883c-5.297,0-10.593,1.766-14.124,5.297
+    c-7.945,7.062-21.186,20.303-24.717,37.959c-6.179,26.483,3.531,58.262,26.483,90.041s67.09,82.979,144.772,105.048
+    c24.717,7.062,44.138,2.648,60.028-7.062c12.359-7.945,20.303-20.303,22.952-33.545l2.648-12.359
+    c0.883-3.531-0.883-7.945-4.414-9.71l-55.614-25.6c-3.531-1.766-7.945-0.883-10.593,2.648l-22.069,28.248
+    c-1.766,1.766-4.414,2.648-7.062,1.766c-15.007-5.297-65.324-26.483-92.69-79.448c-0.883-2.648-0.883-5.297,0.883-7.062
+    l21.186-23.834c1.766-2.648,2.648-6.179,1.766-8.828l-25.6-57.379C193.324,138.593,190.676,135.945,187.145,135.945"></path>
+</svg>
+  8600064713
+</a>
+<div class="marquee">
+  <div class="marquee-content">
+    रेशनकार्डची सर्व कामे ऑनलाईन करून मिळतील - नवीन मतदान कार्ड व दुरुस्ती - आधारकार्ड तुमच्या बँक खात्याशी लिंक करणे :- <strong>आरोही इंटरप्रायजेस बोरी रोड काझड</strong>
+  </div>
+</div>
+
+    </p>
+      <div class="control-panel">
+        <div class="custom-select" id="file-selector">
+          <div class="select-header" id="select-header">
+            <span id="selected-option">गाव किंवा रेशन दुकान नंबर निवडा</span>
+            <span class="arrow"></span>
+          </div>
+          <div class="select-options" id="select-options">
+            <input
+              type="text"
+              class="search-box"
+              id="option-search"
+              placeholder="तुमचं गाव किंवा रेशन दुकान नंबर शोधा..."
+            />
+            <!-- <div
+              class="select-option"
+              data-value=""
+              style="display: block"
+            ></div> -->
+           <div class="select-option" data-value="INDAPUR/152102600001.json">Shetphalgadhe-152102600001</div><div class="select-option" data-value="INDAPUR/152102600004.json">Pimpale-152102600004</div><div class="select-option" data-value="INDAPUR/152102600006.json">Madanwadi-152102600006</div><div class="select-option" data-value="INDAPUR/152102600007.json">Madanwadi-152102600007</div><div class="select-option" data-value="INDAPUR/152102600010.json">Takrarwadi-152102600010</div><div class="select-option" data-value="INDAPUR/152102600012.json">Bhigvan-152102600012</div><div class="select-option" data-value="INDAPUR/152102600013.json">Bhigvan-152102600013</div><div class="select-option" data-value="INDAPUR/152102600019.json">Bhigvanstaion-152102600019</div><div class="select-option" data-value="INDAPUR/152102600023.json">Dikasal-152102600023</div><div class="select-option" data-value="INDAPUR/152102600025.json">Kumbhargaon-152102600025</div><div class="select-option" data-value="INDAPUR/152102600028.json">Poundhawadi-152102600028</div><div class="select-option" data-value="INDAPUR/152102600031.json">Nirgude-152102600031</div><div class="select-option" data-value="INDAPUR/152102600036.json">Vaysewadi-152102600036</div><div class="select-option" data-value="INDAPUR/152102600042.json">Bhadalwadi-152102600042</div><div class="select-option" data-value="INDAPUR/152102600044.json">Dalaj-152102600044</div><div class="select-option" data-value="INDAPUR/152102600048.json">Dalaj-152102600048</div><div class="select-option" data-value="INDAPUR/152102600052.json">Palasdeo-152102600052</div><div class="select-option" data-value="INDAPUR/152102600053.json">Palasdeo-152102600053</div><div class="select-option" data-value="INDAPUR/152102600060.json">Malewadi-152102600060</div><div class="select-option" data-value="INDAPUR/152102600063.json">Loni-152102600063</div><div class="select-option" data-value="INDAPUR/152102600069.json">Karewadi-152102600069</div><div class="select-option" data-value="INDAPUR/152102600072.json">Lakadi-152102600072</div><div class="select-option" data-value="INDAPUR/152102600077.json">Shindewadi-152102600077</div><div class="select-option" data-value="INDAPUR/152102600079.json">Kazad-152102600079</div><div class="select-option" data-value="INDAPUR/152102600084.json">Nimbodi-152102600084</div><div class="select-option" data-value="INDAPUR/152102600092.json">Sansar-152102600092</div><div class="select-option" data-value="INDAPUR/152102600099.json">Bhawaninagar-152102600099</div><div class="select-option" data-value="INDAPUR/152102600102.json">Jachakvasti-152102600102</div><div class="select-option" data-value="INDAPUR/152102600108.json">Lasurne-152102600108</div><div class="select-option" data-value="INDAPUR/152102600109.json">Lasurne-152102600109</div><div class="select-option" data-value="INDAPUR/152102600110.json">Lasurne-152102600110</div><div class="select-option" data-value="INDAPUR/152102600120.json">Lasurne-152102600120</div><div class="select-option" data-value="INDAPUR/152102600121.json">Lasurne-152102600121</div><div class="select-option" data-value="INDAPUR/152102600123.json">Belewadi-152102600123</div><div class="select-option" data-value="INDAPUR/152102600126.json">Belewadi-152102600126</div><div class="select-option" data-value="INDAPUR/152102600127.json">Sapkalwadi-152102600127</div><div class="select-option" data-value="INDAPUR/152102600130.json">Udhat-152102600130</div><div class="select-option" data-value="INDAPUR/152102600132.json">Paritwadi-152102600132</div><div class="select-option" data-value="INDAPUR/152102600134.json">Thoratwadi-152102600134</div><div class="select-option" data-value="INDAPUR/152102600138.json">Bambadwadi-152102600138</div><div class="select-option" data-value="INDAPUR/152102600139.json">Mankarwadi-152102600139</div><div class="select-option" data-value="INDAPUR/152102600143.json">Gholapwadi-152102600143</div><div class="select-option" data-value="INDAPUR/152102600144.json">Tawashi-152102600144</div><div class="select-option" data-value="INDAPUR/152102600148.json">Jamb-152102600148</div><div class="select-option" data-value="INDAPUR/152102600150.json">Kurawali-152102600150</div><div class="select-option" data-value="INDAPUR/152102600152.json">Chikhali-152102600152</div><div class="select-option" data-value="INDAPUR/152102600154.json">Nhavi-152102600154</div><div class="select-option" data-value="INDAPUR/152102600159.json">Rui-152102600159</div><div class="select-option" data-value="INDAPUR/152102600162.json">Kalas-152102600162</div><div class="select-option" data-value="INDAPUR/152102600163.json">Kalas-152102600163</div><div class="select-option" data-value="INDAPUR/152102600166.json">Thoratwadi-152102600166</div><div class="select-option" data-value="INDAPUR/152102600167.json">Birgundwadi-152102600167</div><div class="select-option" data-value="INDAPUR/152102600169.json">Shelgaon-152102600169</div><div class="select-option" data-value="INDAPUR/152102600170.json">Shelgaon-152102600170</div><div class="select-option" data-value="INDAPUR/152102600174.json">Bharnewadi-152102600174</div><div class="select-option" data-value="INDAPUR/152102600175.json">Bharnewadi-152102600175</div><div class="select-option" data-value="INDAPUR/152102600176.json">Anthurne-152102600176</div><div class="select-option" data-value="INDAPUR/152102600179.json">Anthurne-152102600179</div><div class="select-option" data-value="INDAPUR/152102600180.json">Kadbanwadi-152102600180</div><div class="select-option" data-value="INDAPUR/152102600182.json">Hangarwadi-152102600182</div><div class="select-option" data-value="INDAPUR/152102600185.json">Pitkeshwar-152102600185</div><div class="select-option" data-value="INDAPUR/152102600188.json">Sarafwadi-152102600188</div><div class="select-option" data-value="INDAPUR/152102600190.json">Ghorpadwadi-152102600190</div><div class="select-option" data-value="INDAPUR/152102600193.json">Sirsatwadi-152102600193</div><div class="select-option" data-value="INDAPUR/152102600198.json">Kalamb-152102600198</div><div class="select-option" data-value="INDAPUR/152102600199.json">Kalamb-152102600199</div><div class="select-option" data-value="INDAPUR/152102600213.json">Nimsakhar-152102600213</div><div class="select-option" data-value="INDAPUR/152102600214.json">Nirwangi-152102600214</div><div class="select-option" data-value="INDAPUR/152102600216.json">Kauthali-152102600216</div><div class="select-option" data-value="INDAPUR/152102600219.json">Vyahali-152102600219</div><div class="select-option" data-value="INDAPUR/152102600225.json">Gotandi-152102600225</div><div class="select-option" data-value="INDAPUR/152102600226.json">Nimgaon-152102600226</div><div class="select-option" data-value="INDAPUR/152102600227.json">Nimgaon-152102600227</div><div class="select-option" data-value="INDAPUR/152102600228.json">Nimgaon-152102600228</div><div class="select-option" data-value="INDAPUR/152102600232.json">Nimgaon-152102600232</div><div class="select-option" data-value="INDAPUR/152102600241.json">Nimgaon-152102600241</div><div class="select-option" data-value="INDAPUR/152102600242.json">Varkute-152102600242</div><div class="select-option" data-value="INDAPUR/152102600245.json">Kati-152102600245</div><div class="select-option" data-value="INDAPUR/152102600246.json">Kati-152102600246</div><div class="select-option" data-value="INDAPUR/152102600253.json">Jadhavwadi-152102600253</div><div class="select-option" data-value="INDAPUR/152102600260.json">Reda-152102600260</div><div class="select-option" data-value="INDAPUR/152102600261.json">Redani-152102600261</div><div class="select-option" data-value="INDAPUR/152102600266.json">Khorochi-152102600266</div><div class="select-option" data-value="INDAPUR/152102600270.json">Boratwadi-152102600270</div><div class="select-option" data-value="INDAPUR/152102600273.json">Agoti-152102600273</div><div class="select-option" data-value="INDAPUR/152102600274.json">Agoti-152102600274</div><div class="select-option" data-value="INDAPUR/152102600277.json">Kalashi-152102600277</div><div class="select-option" data-value="INDAPUR/152102600281.json">Kalthan-152102600281</div><div class="select-option" data-value="INDAPUR/152102600283.json">Padasthal-152102600283</div><div class="select-option" data-value="INDAPUR/152102600286.json">Ajoti-152102600286</div><div class="select-option" data-value="INDAPUR/152102600288.json">Sugaon-152102600288</div><div class="select-option" data-value="INDAPUR/152102600292.json">Malwadi-152102600292</div><div class="select-option" data-value="INDAPUR/152102600293.json">Malwadi-152102600293</div><div class="select-option" data-value="INDAPUR/152102600298.json">Narutwadi-152102600298</div><div class="select-option" data-value="INDAPUR/152102600300.json">Gagargaon-152102600300</div><div class="select-option" data-value="INDAPUR/152102600302.json">Bijwadi-152102600302</div><div class="select-option" data-value="INDAPUR/152102600306.json">Rajwadi-152102600306</div><div class="select-option" data-value="INDAPUR/152102600308.json">Vangali-152102600308</div><div class="select-option" data-value="INDAPUR/152102600310.json">Pondkulwadi-152102600310</div><div class="select-option" data-value="INDAPUR/152102600312.json">Shaha-152102600312</div><div class="select-option" data-value="INDAPUR/152102600314.json">Kandalgaon-152102600314</div><div class="select-option" data-value="INDAPUR/152102600316.json">Sardewadi-152102600316</div><div class="select-option" data-value="INDAPUR/152102600317.json">Galand-152102600317</div><div class="select-option" data-value="INDAPUR/152102600320.json">Gokhali-152102600320</div><div class="select-option" data-value="INDAPUR/152102600321.json">Tarangwadi-152102600321</div><div class="select-option" data-value="INDAPUR/152102600322.json">Zagadewadi-152102600322</div><div class="select-option" data-value="INDAPUR/152102600327.json">Vadapuri-152102600327</div><div class="select-option" data-value="INDAPUR/152102600330.json">Bedshinge-152102600330</div><div class="select-option" data-value="INDAPUR/152102600332.json">Babhulgaon-152102600332</div><div class="select-option" data-value="INDAPUR/152102600335.json">Awasari-152102600335</div><div class="select-option" data-value="INDAPUR/152102600337.json">Bhat-152102600337</div><div class="select-option" data-value="INDAPUR/152102600339.json">Shetphal-152102600339</div><div class="select-option" data-value="INDAPUR/152102600342.json">Surwad-152102600342</div><div class="select-option" data-value="INDAPUR/152102600347.json">Bhandgaon-152102600347</div><div class="select-option" data-value="INDAPUR/152102600350.json">Vakilwasti-152102600350</div><div class="select-option" data-value="INDAPUR/152102600354.json">Bawada-152102600354</div><div class="select-option" data-value="INDAPUR/152102600355.json">Bawada-152102600355</div><div class="select-option" data-value="INDAPUR/152102600359.json">Bawada-152102600359</div><div class="select-option" data-value="INDAPUR/152102600361.json">Bhodani-152102600361</div><div class="select-option" data-value="INDAPUR/152102600369.json">Lakhewadi-152102600369</div><div class="select-option" data-value="INDAPUR/152102600370.json">Chakati-152102600370</div><div class="select-option" data-value="INDAPUR/152102600374.json">Pithewadi-152102600374</div><div class="select-option" data-value="INDAPUR/152102600375.json">Nirnimgaon-152102600375</div><div class="select-option" data-value="INDAPUR/152102600376.json">Nirnimgaon-152102600376</div><div class="select-option" data-value="INDAPUR/152102600380.json">Kacharewadi-152102600380</div><div class="select-option" data-value="INDAPUR/152102600381.json">Sarati-152102600381</div><div class="select-option" data-value="INDAPUR/152102600383.json">Lumewadi-152102600383</div><div class="select-option" data-value="INDAPUR/152102600386.json">Pimpri-152102600386</div><div class="select-option" data-value="INDAPUR/152102600392.json">Narsingpur-152102600392</div><div class="select-option" data-value="INDAPUR/152102600396.json">Giravi-152102600396</div><div class="select-option" data-value="INDAPUR/152102600399.json">Indapur-152102600399</div><div class="select-option" data-value="INDAPUR/152102600400.json">Indapur-152102600400</div><div class="select-option" data-value="INDAPUR/152102600401.json">Indapur-152102600401</div><div class="select-option" data-value="INDAPUR/152102600402.json">Indapur-152102600402</div><div class="select-option" data-value="INDAPUR/152102600403.json">Indapur-152102600403</div><div class="select-option" data-value="INDAPUR/152102600404.json">Indapur-152102600404</div><div class="select-option" data-value="INDAPUR/152102600405.json">Indapur-152102600405</div><div class="select-option" data-value="INDAPUR/152102600412.json">Indapur-152102600412</div><div class="select-option" data-value="INDAPUR/152102600413.json">Indapur-152102600413</div><div class="select-option" data-value="INDAPUR/152102600414.json">Indapur-152102600414</div><div class="select-option" data-value="INDAPUR/152102600415.json">Indapur-152102600415</div><div class="select-option" data-value="INDAPUR/152102600416.json">Indapur-152102600416</div><div class="select-option" data-value="INDAPUR/152102600436.json">Indapur-152102600436</div><div class="select-option" data-value="INDAPUR/152102600437.json">Indapur-152102600437</div><div class="select-option" data-value="INDAPUR/152102600439.json">SANJAY-152102600439</div><div class="select-option" data-value="INDAPUR/152102600441.json">UDMAYWADI-152102600441</div><div class="select-option" data-value="INDAPUR/152102600445.json">BHAGATWADI-152102600445</div><div class="select-option" data-value="INDAPUR/152102600446.json">DAGADWADI-152102600446</div><div class="select-option" data-value="INDAPUR/152102600448.json">VALCHANDNAGAR-152102600448</div><div class="select-option" data-value="INDAPUR/152102600449.json">VAIDWADI-152102600449</div><div class="select-option" data-value="INDAPUR/152102600470.json">Ganjewalan-152102600470</div><div class="select-option" data-value="INDAPUR/152102600478.json">WALCHANDNAGAR-152102600478</div><div class="select-option" data-value="INDAPUR/152102600489.json">Balpudi-152102600489</div><div class="select-option" data-value="INDAPUR/152102600490.json">Bhigvan-152102600490</div><div class="select-option" data-value="INDAPUR/152102600491.json">Varkute-152102600491</div><div class="select-option" data-value="INDAPUR/152102600496.json">Nirwangi-152102600496</div><div class="select-option" data-value="INDAPUR/152102600497.json">Indapur-152102600497</div><div class="select-option" data-value="INDAPUR/152102600498.json">Loni-152102600498</div><div class="select-option" data-value="INDAPUR/152102600499.json">Bori-152102600499</div><div class="select-option" data-value="INDAPUR/152102600500.json">Tawashi-152102600500</div><div class="select-option" data-value="INDAPUR/152102600501.json">Kurawali-152102600501</div><div class="select-option" data-value="INDAPUR/152102600502.json">Maradwadi-152102600502</div><div class="select-option" data-value="INDAPUR/152102600503.json">Redani-152102600503</div><div class="select-option" data-value="INDAPUR/152102600504.json">Bawada-152102600504</div><div class="select-option" data-value="INDAPUR/152102600505.json">Ganeshwadi-152102600505</div><div class="select-option" data-value="INDAPUR/152102600506.json">Bhandgaon-152102600506</div><div class="select-option" data-value="INDAPUR/152102600507.json">Bawada-152102600507</div><div class="select-option" data-value="INDAPUR/152102600508.json">Akole-152102600508</div><div class="select-option" data-value="INDAPUR/152102600509.json">Lumewadi-152102600509</div><div class="select-option" data-value="INDAPUR/152102600510.json">Bhawadi-152102600510</div><div class="select-option" data-value="INDAPUR/152102600512.json">BHONGWADI-152102600512</div><div class="select-option" data-value="INDAPUR/152102600514.json">Pawarwadi-152102600514</div><div class="select-option" data-value="INDAPUR/152102600515.json">Taratgaon-152102600515</div><div class="select-option" data-value="INDAPUR/152102600516.json">Sansar-152102600516</div><div class="select-option" data-value="INDAPUR/152102600517.json">Ozare-152102600517</div><div class="select-option" data-value="INDAPUR/152102600518.json">Pandharwadi-152102600518</div><div class="select-option" data-value="INDAPUR/152102600520.json">Gondi-152102600520</div><div class="select-option" data-value="INDAPUR/152102600521.json">Hingangaon-152102600521</div><div class="select-option" data-value="INDAPUR/152102600522.json">Lamjewadi-152102600522</div><div class="select-option" data-value="INDAPUR/152102600523.json">Jankshan-152102600523</div><div class="select-option" data-value="INDAPUR/152102600524.json">Mhasobachiwadi-152102600524</div><div class="select-option" data-value="INDAPUR/152102600525.json">Hinganewadi-152102600525</div><div class="select-option" data-value="INDAPUR/152102600526.json">Indapur-152102600526</div><div class="select-option" data-value="INDAPUR/152102600527.json">RANGAON-152102600527</div><div class="select-option" data-value="INDAPUR/152102600528.json">Shetphalgadhe-152102600528</div><div class="select-option" data-value="INDAPUR/152102600529.json">Sarafwadi-152102600529</div><div class="select-option" data-value="INDAPUR/152102600530.json">Vadapuri-152102600530</div><div class="select-option" data-value="INDAPUR/152102600531.json">WALCHANDNAGAR-152102600531</div><div class="select-option" data-value="INDAPUR/152102600532.json">Kati-152102600532</div><div class="select-option" data-value="INDAPUR/152102600533.json">Khorochi-152102600533</div><div class="select-option" data-value="INDAPUR/152102600534.json">Kalamb-152102600534</div><div class="select-option" data-value="INDAPUR/152102600535.json">Gotandi-152102600535</div><div class="select-option" data-value="INDAPUR/152102600536.json">Ghorpadwadi-152102600536</div><div class="select-option" data-value="INDAPUR/152102600537.json">Anandnagar-152102600537</div><div class="select-option" data-value="INDAPUR/152102660003.json">Bhigvanstaion-152102660003</div><div class="select-option" data-value="INDAPUR/152102660005.json">Galand-152102660005</div><div class="select-option" data-value="INDAPUR/152102660007.json">Nimgaon-152102660007</div><div class="select-option" data-value="INDAPUR/152102660008.json">Tannu-152102660008</div>
+            <!-- <div class="select-option" data-value="all">All Files</div> -->
+          </div>
+        </div>
+
+        <div class="search-container" id="searchContainer">
+          <input
+            type="text"
+            id="search"
+            placeholder="आधारकार्ड नंबर शेवटचे ४ किंवा रेशन नंबर, नावाने शोधा..."
+          />
+        </div>
+      </div>
+
+      <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <!-- <p>Select load data...</p> -->
+      </div>
+
+      <div class="table-wrapper">
+        <div id="results"></div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // DOM elements
+        const selectHeader = document.getElementById("select-header");
+        const selectOptions = document.getElementById("select-options");
+        const selectedOption = document.getElementById("selected-option");
+        const optionSearch = document.getElementById("option-search");
+        const allOptions = document.querySelectorAll(
+          ".select-option:not(:first-child)"
+        );
+        const arrow = document.querySelector(".arrow");
+        const searchInput = document.getElementById("search");
+        const resultsDiv = document.getElementById("results");
+        const loadingDiv = document.getElementById("loading");
+        const fileTitleSpan = document.getElementById("file-title");
+        const searchContainer = document.getElementById("searchContainer");
+
+        searchContainer.style.display = "none";
+
+        loadingDiv.style.display = "none";
+
+        // Data variables
+        let allData = [];
+        let currentData = [];
+
+        // Toggle dropdown visibility
+        selectHeader.addEventListener("click", function (e) {
+          e.stopPropagation();
+          selectOptions.classList.toggle("visible");
+          arrow.classList.toggle("open");
+
+          if (selectOptions.classList.contains("visible")) {
+            searchInput.value="";
+            optionSearch.focus();
+          }
+        });
+
+        // Filter options based on search input
+        optionSearch.addEventListener("input", function () {
+          const searchTerm = this.value.toLowerCase();
+          allOptions.forEach((option) => {
+            const text = option.textContent.toLowerCase();
+            option.style.display = text.includes(searchTerm) ? "block" : "none";
+          });
+        });
+
+        // Handle option selection
+        document.querySelectorAll(".select-option").forEach((option) => {
+          option.addEventListener("click", function (e) {
+            e.stopPropagation();
+            selectedOption.textContent = this.textContent;
+            selectOptions.classList.remove("visible");
+            arrow.classList.remove("open");
+            optionSearch.value = "";
+            allOptions.forEach((opt) => (opt.style.display = "block"));
+
+            const file = this.getAttribute("data-value");
+            if (file === undefined) return;
+
+            // Update the title based on selection
+            if (file === "all") {
+              fileTitleSpan.textContent = "All Files";
+              loadAllData();
+            } else if (file) {
+              // Extract just the filename without path for display
+              const VillName = this.textContent.split("-")[0];
+              fileTitleSpan.textContent = VillName;
+              loadSingleFile(file);
+              // loadSingleFile(file);
+            } else {
+              fileTitleSpan.textContent = "इंदापूर तालुका";
+            }
+          });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function () {
+          selectOptions.classList.remove("visible");
+          arrow.classList.remove("open");
+        });
+
+        // Prevent dropdown from closing when clicking inside
+        selectOptions.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+
+        // Show loading state with spinner
+        function showLoading(message) {
+          loadingDiv.innerHTML = `
+                    <div class="spinner"></div>
+                    <p>${message}</p>
+                `;
+          loadingDiv.className = "loading";
+          loadingDiv.style.display = "block";
+          searchContainer.style.display = "block";
+        }
+
+        // Show error message
+        function showError(message) {
+          loadingDiv.innerHTML = `<p>${message}</p>`;
+          loadingDiv.className = "error";
+          loadingDiv.style.display = "block";
+        }
+
+        // Hide loading/error messages
+        function hideMessages() {
+          loadingDiv.style.display = "none";
+        }
+
+        // Load all JSON files
+        async function loadAllData() {
+          showLoading("Loading data from all files...");
+          resultsDiv.innerHTML = "";
+
+          try {
+            const files = ["index3/10.json"];
+            const promises = files.map((file) =>
+              fetch(file)
+                .then((res) => {
+                  if (!res.ok)
+                    throw new Error(`Failed to load ${file}: ${res.status}`);
+                  return res.json();
+                })
+                .catch((err) => {
+                  console.error(`Error loading ${file}:`, err);
+                  return [];
+                })
+            );
+
+            const dataArrays = await Promise.all(promises);
+            allData = dataArrays.flat();
+
+            if (allData.length === 0) {
+              throw new Error("No data loaded from any files");
+            }
+
+            currentData = [...allData];
+            displayData(currentData);
+            hideMessages();
+          } catch (error) {
+            showError("Error loading data: " + error.message);
+            console.error("Error loading data:", error);
+          }
+        }
+
+        // Load single JSON file
+        async function loadSingleFile(file) {
+          showLoading(`KYC Pending यादी दाखवत आहे...`);
+          resultsDiv.innerHTML = "";
+
+          try {
+            const response = await fetch(file);
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            currentData = await response.json();
+
+            if (!Array.isArray(currentData)) {
+              throw new Error("Loaded data is not an array");
+            }
+
+            displayData(currentData);
+            hideMessages();
+          } catch (error) {
+            showError(`Error loading ${file}: ${error.message}`);
+            console.error(`Error loading ${file}:`, error);
+          }
+        }
+
+        // Display data in a responsive table
+        function displayData(data) {
+          if (data.length === 0) {
+            resultsDiv.innerHTML =
+              '<p class="error">यादी दाखवत नाही, KYC झालेली असेल.</p>';
+            return;
+          }
+          // <th>SrNo</th>
+          // <th>Member Id</th>
+          // <th>Office</th>
+          let html = `<p class="results-info">${data.length} KYC राहिलेली नावे दाखवत आहे</p>
+                    <table>
+                        <thead>
+                            <tr>
+                               
+                                <th>रेशन नंबर</th>
+                               
+                                <th>नाव</th>
+                                <th>आधार नंबर</th>
+                                <th>लिंग</th>
+                                <th>प्रकार</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+          data.forEach((item) => {
+            // <td>${item.SrNo}</td>
+            //  <td>${item.MemberId}</td>
+            // <td>${item.Office}</td>
+            html += `
+                        <tr>
+                           
+                            <td>${item.RC_Id}</td>
+                           
+                            <td>${item.MemberName}</td>
+                            <td>${item.UID}</td>
+                            <td>${item.Gender}</td>
+                            <td>${item.Scheme}</td>
+                        </tr>
+                    `;
+          });
+
+          html += `
+                        </tbody>
+                    </table> `;
+          // <p class="results-info">Showing ${data.length} records</p>
+
+          resultsDiv.innerHTML = html;
+        }
+
+        // Filter data based on search input
+        function filterData() {
+          const searchTerm = searchInput.value.toLowerCase();
+
+          if (!searchTerm) {
+            displayData(currentData);
+            return;
+          }
+
+          const filtered = currentData.filter(
+            (item) =>
+              item.RC_Id.toLowerCase().includes(searchTerm) ||
+              item.MemberName.toLowerCase().includes(searchTerm) ||
+              item.UID.toLowerCase().includes(searchTerm)
+          );
+          displayData(filtered);
+        }
+
+        // Initialize
+        searchInput.addEventListener("input", filterData);
+      });
+    </script>
+  </body>
+</html>

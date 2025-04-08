@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>जुन्नर तालुका गावांची रेशन KYC pending यादी</title>
+   <meta name="description" content="">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://krishnawaghmode.github.io/indapur-ekyc-pending">
+<meta property="og:type" content="website">
+<meta property="og:title" content="जुन्नर तालुका गावांची रेशन KYC pending यादी">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://krishnawaghmode.github.io/indapur-ekyc-pending/ration.jpeg">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="krishnawaghmode.github.io">
+<meta property="twitter:url" content="https://krishnawaghmode.github.io/indapur-ekyc-pending">
+<meta name="twitter:title" content="जुन्नर तालुका गावांची रेशन KYC pending यादी">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://krishnawaghmode.github.io/indapur-ekyc-pending/ration.jpeg">
+    <style>
+      :root {
+        --primary-color: #4caf50;
+        --primary-hover: #45a049;
+        --primary-active: #2e7d32;
+        --border-color: #ddd;
+        --text-color: #333;
+        --light-bg: #f5f5f5;
+        --white: #fff;
+        --pending-color: #ff9800;
+        --success-color: #4caf50;
+        --error-color: #f44336;
+        --table-even: #f9f9f9;
+        --table-hover: #f1f1f1;
+        --table-header: #f2f2f2;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 15px;
+        background-color: var(--light-bg);
+        color: var(--text-color);
+        line-height: 1.6;
+        font-size: 16px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: var(--white);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        /* text-align: center;
+        margin-bottom: 20px;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        color: var(--primary-active); */
+        font-size: 20px;
+        /* margin: 0 0 15px 0; */
+        text-align: center;
+        color: #333;
+      }
+
+      h1 span {
+        /* font-weight: normal; */
+        color: var(--text-color);
+      }
+
+      .control-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 10px;
+      }
+
+      @media (min-width: 768px) {
+        .control-panel {
+          flex-direction: row;
+          align-items: flex-end;
+        }
+      }
+
+      .custom-select {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .select-header {
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background-color: var(--white);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .select-header:hover {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+      }
+
+      .select-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background-color: var(--white);
+        max-height: 250px;
+        overflow-y: auto;
+        display: none;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        margin-top: 5px;
+      }
+
+      .select-options.visible {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .search-box {
+        padding: 12px;
+        width: calc(100% - 24px);
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        outline: none;
+        margin: 8px 12px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+      }
+
+      .search-box:focus {
+        border-bottom-color: var(--primary-color);
+      }
+
+      .select-option {
+        padding: 12px 15px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .select-option:hover {
+        background-color: rgba(76, 175, 80, 0.1);
+      }
+
+      .select-option.selected {
+        background-color: rgba(76, 175, 80, 0.2);
+        font-weight: 600;
+      }
+
+      .search-container {
+        flex: 1;
+        min-width: 0;
+      }
+
+      #search {
+        padding: 12px 15px;
+        width: 100%;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.3s;
+      }
+
+      #search:focus {
+        border-color: var(--primary-color);
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+      }
+
+      .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        margin-top: 10px;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px;
+      }
+
+      th,
+      td {
+        border: 1px solid var(--border-color);
+        padding: 12px 15px;
+        text-align: left;
+      }
+
+      th {
+        background-color: var(--table-header);
+        position: sticky;
+        top: 0;
+        font-weight: 600;
+        color: var(--text-color);
+      }
+
+      tr:nth-child(even) {
+        background-color: var(--table-even);
+      }
+
+      tr:hover {
+        background-color: var(--table-hover);
+      }
+
+      .status-pending {
+        color: var(--pending-color);
+        font-weight: 600;
+      }
+
+      .status-success {
+        color: var(--success-color);
+        font-weight: 600;
+      }
+
+      .loading,
+      .error {
+        text-align: center;
+        padding: 30px;
+        margin: 20px 0;
+        border-radius: 6px;
+      }
+
+      .loading {
+        color: #666;
+        background-color: rgba(0, 0, 0, 0.02);
+      }
+
+      .error {
+        color: var(--error-color);
+        font-weight: 600;
+        background-color: rgba(244, 67, 54, 0.05);
+        border: 1px solid rgba(244, 67, 54, 0.2);
+      }
+
+      .arrow {
+        border: solid var(--text-color);
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 4px;
+        transform: rotate(45deg);
+        transition: transform 0.3s;
+        margin-left: 10px;
+      }
+
+      .arrow.open {
+        transform: rotate(-135deg);
+      }
+
+      .results-info {
+        font-size: 14px;
+        color: #dd3a3a;
+        text-align: left;
+        margin-left: 5px;
+      }
+
+      /* Loading spinner */
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid var(--primary-color);
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 15px;
+      }
+
+      /* Mobile optimizations */
+      @media (max-width: 767px) {
+        .container {
+          padding: 15px;
+        }
+
+        th,
+        td {
+          padding: 10px 12px;
+          font-size: 14px;
+        }
+
+        .select-header,
+        #search {
+          padding: 10px 12px;
+        }
+
+        .loading,
+        .error {
+          padding: 20px 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 10px;
+        }
+
+        th,
+        td {
+          padding: 8px 10px;
+          font-size: 13px;
+        }
+
+        .select-option {
+          padding: 10px 12px;
+        }
+      }
+
+      /* Print styles */
+      @media print {
+        body {
+          background: none;
+          padding: 0;
+          font-size: 12pt;
+        }
+
+        .container {
+          box-shadow: none;
+          padding: 0;
+          max-width: 100%;
+        }
+
+        .control-panel,
+        #search,
+        .custom-select {
+          display: none;
+        }
+
+        table {
+          min-width: 100%;
+        }
+
+        th,
+        td {
+          padding: 8px 10px;
+        }
+      }
+    </style>
+      <link rel="stylesheet" href="marquee.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        <span id="file-title" style="color: #d57914ee;text-decoration: underline;">जुन्नर तालुका</span> 
+        गावांची रेशन KYC pending यादी
+      </h1> <a href="index.html" 
+      style="display: flex; align-items: center; justify-content: center; padding: 5px 5px;
+             background-color: #2196F3; color: white; text-decoration: none; border-radius: 6px;
+             transition: all 0.3s; text-align: center; font-size: 15px; 
+             box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-weight: bold;
+             margin: 0; border: none; cursor: pointer;"
+      onmouseover="this.style.backgroundColor='#0b7dda';this.style.transform='translateY(-3px)';this.style.boxShadow='0 4px 8px rgba(0,0,0,0.15)'"
+      onmouseout="this.style.backgroundColor='#2196F3';this.style.transform='none';this.style.boxShadow='0 2px 5px rgba(0,0,0,0.1)'">
+     <!-- होम -->
+     मुख्यपृष्ठ
+   </a>
+      <p style=" text-align: center; ">अधिक माहितीसाठी संपर्क करा 
+
+        <!-- <a href="tel:8600064713" style=" font-weight: bold; color: #eb0e0e; ">8600064713</a>  -->
+        <a href="tel:8600064713" rel="noopener" style=" font-weight: bold; color: #eb0e0e; ">
+ <svg height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+<path style="fill:#EDEDED;" d="M0,512l35.31-128C12.359,344.276,0,300.138,0,254.234C0,114.759,114.759,0,255.117,0
+    S512,114.759,512,254.234S395.476,512,255.117,512c-44.138,0-86.51-14.124-124.469-35.31L0,512z"></path>
+<path style="fill:#55CD6C;" d="M137.71,430.786l7.945,4.414c32.662,20.303,70.621,32.662,110.345,32.662
+    c115.641,0,211.862-96.221,211.862-213.628S371.641,44.138,255.117,44.138S44.138,137.71,44.138,254.234
+    c0,40.607,11.476,80.331,32.662,113.876l5.297,7.945l-20.303,74.152L137.71,430.786z"></path>
+<path style="fill:#FEFEFE;" d="M187.145,135.945l-16.772-0.883c-5.297,0-10.593,1.766-14.124,5.297
+    c-7.945,7.062-21.186,20.303-24.717,37.959c-6.179,26.483,3.531,58.262,26.483,90.041s67.09,82.979,144.772,105.048
+    c24.717,7.062,44.138,2.648,60.028-7.062c12.359-7.945,20.303-20.303,22.952-33.545l2.648-12.359
+    c0.883-3.531-0.883-7.945-4.414-9.71l-55.614-25.6c-3.531-1.766-7.945-0.883-10.593,2.648l-22.069,28.248
+    c-1.766,1.766-4.414,2.648-7.062,1.766c-15.007-5.297-65.324-26.483-92.69-79.448c-0.883-2.648-0.883-5.297,0.883-7.062
+    l21.186-23.834c1.766-2.648,2.648-6.179,1.766-8.828l-25.6-57.379C193.324,138.593,190.676,135.945,187.145,135.945"></path>
+</svg>
+  8600064713
+</a>
+<div class="marquee">
+  <div class="marquee-content">
+    रेशनकार्डची सर्व कामे ऑनलाईन करून मिळतील - नवीन मतदान कार्ड व दुरुस्ती - आधारकार्ड तुमच्या बँक खात्याशी लिंक करणे :- <strong>आरोही इंटरप्रायजेस बोरी रोड काझड</strong>
+  </div>
+</div>
+
+    </p>
+      <div class="control-panel">
+        <div class="custom-select" id="file-selector">
+          <div class="select-header" id="select-header">
+            <span id="selected-option">गाव किंवा रेशन दुकान नंबर निवडा</span>
+            <span class="arrow"></span>
+          </div>
+          <div class="select-options" id="select-options">
+            <input
+              type="text"
+              class="search-box"
+              id="option-search"
+              placeholder="तुमचं गाव किंवा रेशन दुकान नंबर शोधा..."
+            />
+            <!-- <div
+              class="select-option"
+              data-value=""
+              style="display: block"
+            ></div> -->
+           <div class="select-option" data-value="JUNNAR/152102700002.json">Kopare-152102700002</div><div class="select-option" data-value="JUNNAR/152102700003.json">Mandave-152102700003</div><div class="select-option" data-value="JUNNAR/152102700005.json">Pimpalgaon-152102700005</div><div class="select-option" data-value="JUNNAR/152102700008.json">Bhoirwadi-152102700008</div><div class="select-option" data-value="JUNNAR/152102700012.json">Khubi-152102700012</div><div class="select-option" data-value="JUNNAR/152102700013.json">Taleran-152102700013</div><div class="select-option" data-value="JUNNAR/152102700016.json">Sitewadi-152102700016</div><div class="select-option" data-value="JUNNAR/152102700017.json">Madh-152102700017</div><div class="select-option" data-value="JUNNAR/152102700018.json">Madh-152102700018</div><div class="select-option" data-value="JUNNAR/152102700023.json">Dingore-152102700023</div><div class="select-option" data-value="JUNNAR/152102700024.json">Udapur-152102700024</div><div class="select-option" data-value="JUNNAR/152102700029.json">Chilhewadi-152102700029</div><div class="select-option" data-value="JUNNAR/152102700030.json">Ambe-152102700030</div><div class="select-option" data-value="JUNNAR/152102700032.json">Pachgharwadi-152102700032</div><div class="select-option" data-value="JUNNAR/152102700036.json">Otur-152102700036</div><div class="select-option" data-value="JUNNAR/152102700037.json">Otur-152102700037</div><div class="select-option" data-value="JUNNAR/152102700038.json">Otur-152102700038</div><div class="select-option" data-value="JUNNAR/152102700051.json">Otur-152102700051</div><div class="select-option" data-value="JUNNAR/152102700056.json">Khamundi-152102700056</div><div class="select-option" data-value="JUNNAR/152102700058.json">Umbraj-152102700058</div><div class="select-option" data-value="JUNNAR/152102700062.json">Padirwadi-152102700062</div><div class="select-option" data-value="JUNNAR/152102700071.json">Ale-152102700071</div><div class="select-option" data-value="JUNNAR/152102700078.json">Ale-152102700078</div><div class="select-option" data-value="JUNNAR/152102700079.json">Pimpalwandi-152102700079</div><div class="select-option" data-value="JUNNAR/152102700080.json">Pimpalwandi-152102700080</div><div class="select-option" data-value="JUNNAR/152102700088.json">Pimpalwandi-152102700088</div><div class="select-option" data-value="JUNNAR/152102700089.json">Bhatkalwadi-152102700089</div><div class="select-option" data-value="JUNNAR/152102700092.json">Kalwadi-152102700092</div><div class="select-option" data-value="JUNNAR/152102700093.json">Ajanawale-152102700093</div><div class="select-option" data-value="JUNNAR/152102700095.json">Nimgiri-152102700095</div><div class="select-option" data-value="JUNNAR/152102700097.json">Khatkale-152102700097</div><div class="select-option" data-value="JUNNAR/152102700098.json">Khaire-152102700098</div><div class="select-option" data-value="JUNNAR/152102700101.json">Phagul-152102700101</div><div class="select-option" data-value="JUNNAR/152102700102.json">Khadkumbe-152102700102</div><div class="select-option" data-value="JUNNAR/152102700105.json">Hadsar-152102700105</div><div class="select-option" data-value="JUNNAR/152102700107.json">Godre-152102700107</div><div class="select-option" data-value="JUNNAR/152102700109.json">Alame-152102700109</div><div class="select-option" data-value="JUNNAR/152102700111.json">Ballalwadi-152102700111</div><div class="select-option" data-value="JUNNAR/152102700113.json">Pangari-152102700113</div><div class="select-option" data-value="JUNNAR/152102700114.json">Malwadi-152102700114</div><div class="select-option" data-value="JUNNAR/152102700115.json">Tejewadi-152102700115</div><div class="select-option" data-value="JUNNAR/152102700118.json">Shiroli-152102700118</div><div class="select-option" data-value="JUNNAR/152102700120.json">Golegaon-152102700120</div><div class="select-option" data-value="JUNNAR/152102700124.json">Pimpalgaon-152102700124</div><div class="select-option" data-value="JUNNAR/152102700126.json">Aldare-152102700126</div><div class="select-option" data-value="JUNNAR/152102700129.json">Kewadi-152102700129</div><div class="select-option" data-value="JUNNAR/152102700131.json">Shiroli-152102700131</div><div class="select-option" data-value="JUNNAR/152102700132.json">Manikdoh-152102700132</div><div class="select-option" data-value="JUNNAR/152102700136.json">Tejur-152102700136</div><div class="select-option" data-value="JUNNAR/152102700140.json">Nirgude-152102700140</div><div class="select-option" data-value="JUNNAR/152102700143.json">Dhalewadi-152102700143</div><div class="select-option" data-value="JUNNAR/152102700144.json">Bhivade-152102700144</div><div class="select-option" data-value="JUNNAR/152102700146.json">Bhivade-152102700146</div><div class="select-option" data-value="JUNNAR/152102700148.json">Hatvij-152102700148</div><div class="select-option" data-value="JUNNAR/152102700149.json">Ingaloon-152102700149</div><div class="select-option" data-value="JUNNAR/152102700151.json">Sonawale-152102700151</div><div class="select-option" data-value="JUNNAR/152102700153.json">Ghangaldare-152102700153</div><div class="select-option" data-value="JUNNAR/152102700155.json">Shinde-152102700155</div><div class="select-option" data-value="JUNNAR/152102700156.json">Belsar-152102700156</div><div class="select-option" data-value="JUNNAR/152102700158.json">Kusur-152102700158</div><div class="select-option" data-value="JUNNAR/152102700159.json">Yenere-152102700159</div><div class="select-option" data-value="JUNNAR/152102700164.json">Kale-152102700164</div><div class="select-option" data-value="JUNNAR/152102700166.json">Datkhilwadi-152102700166</div><div class="select-option" data-value="JUNNAR/152102700169.json">Tambe-152102700169</div><div class="select-option" data-value="JUNNAR/152102700170.json">Tambe-152102700170</div><div class="select-option" data-value="JUNNAR/152102700171.json">Sukalwedhe-152102700171</div><div class="select-option" data-value="JUNNAR/152102700172.json">Padali-152102700172</div><div class="select-option" data-value="JUNNAR/152102700177.json">Agar-152102700177</div><div class="select-option" data-value="JUNNAR/152102700179.json">Badshaha-152102700179</div><div class="select-option" data-value="JUNNAR/152102700181.json">Hapus-152102700181</div><div class="select-option" data-value="JUNNAR/152102700188.json">Khanapur-152102700188</div><div class="select-option" data-value="JUNNAR/152102700193.json">Basti-152102700193</div><div class="select-option" data-value="JUNNAR/152102700196.json">Vadgaon-152102700196</div><div class="select-option" data-value="JUNNAR/152102700198.json">Pimpalgaon-152102700198</div><div class="select-option" data-value="JUNNAR/152102700199.json">Arvi-152102700199</div><div class="select-option" data-value="JUNNAR/152102700202.json">Sawargaon-152102700202</div><div class="select-option" data-value="JUNNAR/152102700207.json">Sawargaon-152102700207</div><div class="select-option" data-value="JUNNAR/152102700208.json">Nimdari-152102700208</div><div class="select-option" data-value="JUNNAR/152102700210.json">Vadaj-152102700210</div><div class="select-option" data-value="JUNNAR/152102700213.json">Buchakewadi-152102700213</div><div class="select-option" data-value="JUNNAR/152102700214.json">Parunde-152102700214</div><div class="select-option" data-value="JUNNAR/152102700220.json">Chincholi-152102700220</div><div class="select-option" data-value="JUNNAR/152102700222.json">Bhorwadi-152102700222</div><div class="select-option" data-value="JUNNAR/152102700226.json">Hivare-152102700226</div><div class="select-option" data-value="JUNNAR/152102700227.json">Yedgaon-152102700227</div><div class="select-option" data-value="JUNNAR/152102700232.json">Kandali-152102700232</div><div class="select-option" data-value="JUNNAR/152102700234.json">Vadgaon-152102700234</div><div class="select-option" data-value="JUNNAR/152102700235.json">Nagadwadi-152102700235</div><div class="select-option" data-value="JUNNAR/152102700236.json">Narayangaon-152102700236</div><div class="select-option" data-value="JUNNAR/152102700237.json">Narayangaon-152102700237</div><div class="select-option" data-value="JUNNAR/152102700245.json">Warulwadi-152102700245</div><div class="select-option" data-value="JUNNAR/152102700250.json">Hivare-152102700250</div><div class="select-option" data-value="JUNNAR/152102700251.json">Bori-152102700251</div><div class="select-option" data-value="JUNNAR/152102700254.json">Shiroli-152102700254</div><div class="select-option" data-value="JUNNAR/152102700258.json">Manjarwadi-152102700258</div><div class="select-option" data-value="JUNNAR/152102700261.json">Nalawane-152102700261</div><div class="select-option" data-value="JUNNAR/152102700262.json">Shindewadi-152102700262</div><div class="select-option" data-value="JUNNAR/152102700266.json">Ane-152102700266</div><div class="select-option" data-value="JUNNAR/152102700267.json">Ane-152102700267</div><div class="select-option" data-value="JUNNAR/152102700282.json">Rajuri-152102700282</div><div class="select-option" data-value="JUNNAR/152102700283.json">Bori-152102700283</div><div class="select-option" data-value="JUNNAR/152102700284.json">Bori-152102700284</div><div class="select-option" data-value="JUNNAR/152102700293.json">Bangarwadi-152102700293</div><div class="select-option" data-value="JUNNAR/152102700294.json">Anandwadi-152102700294</div><div class="select-option" data-value="JUNNAR/152102700299.json">Gulunchwadi-152102700299</div><div class="select-option" data-value="JUNNAR/152102700300.json">Belhe-152102700300</div><div class="select-option" data-value="JUNNAR/152102700301.json">Belhe-152102700301</div><div class="select-option" data-value="JUNNAR/152102700309.json">Ranmalawadi-152102700309</div><div class="select-option" data-value="JUNNAR/152102700310.json">Nimgaon-152102700310</div><div class="select-option" data-value="JUNNAR/152102700313.json">Mangrul-152102700313</div><div class="select-option" data-value="JUNNAR/152102700315.json">Pargaon-152102700315</div><div class="select-option" data-value="JUNNAR/152102700317.json">Junnar-152102700317</div><div class="select-option" data-value="JUNNAR/152102700318.json">Junnar-152102700318</div><div class="select-option" data-value="JUNNAR/152102700319.json">Junnar-152102700319</div><div class="select-option" data-value="JUNNAR/152102700320.json">Junnar-152102700320</div><div class="select-option" data-value="JUNNAR/152102700339.json">Junnar-152102700339</div><div class="select-option" data-value="JUNNAR/152102700340.json">Junnar-152102700340</div><div class="select-option" data-value="JUNNAR/152102700341.json">KHANGAON-152102700341</div><div class="select-option" data-value="JUNNAR/152102700343.json">RAJUR-152102700343</div><div class="select-option" data-value="JUNNAR/152102700344.json">DHAWASHI-152102700344</div><div class="select-option" data-value="JUNNAR/152102700402.json">Tambewadi-152102700402</div><div class="select-option" data-value="JUNNAR/152102700403.json">Surale-152102700403</div><div class="select-option" data-value="JUNNAR/152102700404.json">Botarde-152102700404</div><div class="select-option" data-value="JUNNAR/152102700405.json">Rajur-152102700405</div><div class="select-option" data-value="JUNNAR/152102700406.json">Kolhewadi-152102700406</div><div class="select-option" data-value="JUNNAR/152102700407.json">Pemdara-152102700407</div><div class="select-option" data-value="JUNNAR/152102700408.json">Kumshet-152102700408</div><div class="select-option" data-value="JUNNAR/152102700409.json">Sanganore-152102700409</div><div class="select-option" data-value="JUNNAR/152102700410.json">Devale-152102700410</div><div class="select-option" data-value="JUNNAR/152102700411.json">Uchhil-152102700411</div><div class="select-option" data-value="JUNNAR/152102700412.json">Shivali-152102700412</div><div class="select-option" data-value="JUNNAR/152102700413.json">Hirdi-152102700413</div><div class="select-option" data-value="JUNNAR/152102700414.json">Tikekarwadi-152102700414</div><div class="select-option" data-value="JUNNAR/152102700415.json">Gunjalwadi-152102700415</div><div class="select-option" data-value="JUNNAR/152102700417.json">Amboli-152102700417</div><div class="select-option" data-value="JUNNAR/152102700418.json">Chawand-152102700418</div><div class="select-option" data-value="JUNNAR/152102700419.json">Gunjalwadi-152102700419</div><div class="select-option" data-value="JUNNAR/152102700420.json">Hivare-152102700420</div><div class="select-option" data-value="JUNNAR/152102700421.json">Undekhadak-152102700421</div><div class="select-option" data-value="JUNNAR/152102700422.json">Alefata-152102700422</div><div class="select-option" data-value="JUNNAR/152102700423.json">Aptale-152102700423</div><div class="select-option" data-value="JUNNAR/152102700424.json">Unchkhadakwadi-152102700424</div><div class="select-option" data-value="JUNNAR/152102700425.json">Ghatghar-152102700425</div><div class="select-option" data-value="JUNNAR/152102700426.json">Pimpri-152102700426</div><div class="select-option" data-value="JUNNAR/152102700427.json">Ozar-152102700427</div><div class="select-option" data-value="JUNNAR/152102700428.json">Hivare-152102700428</div><div class="select-option" data-value="JUNNAR/152102700429.json">Dholwad-152102700429</div><div class="select-option" data-value="JUNNAR/152102700430.json">Wadgaon-152102700430</div><div class="select-option" data-value="JUNNAR/152102700431.json">Yenere-152102700431</div><div class="select-option" data-value="JUNNAR/152102700432.json">Khodad-152102700432</div><div class="select-option" data-value="JUNNAR/152102700433.json">Junnar-152102700433</div><div class="select-option" data-value="JUNNAR/152102700434.json">Junnar-152102700434</div><div class="select-option" data-value="JUNNAR/152102700435.json">Junnar-152102700435</div><div class="select-option" data-value="JUNNAR/152102770006.json">Sakori-152102770006</div><div class="select-option" data-value="JUNNAR/152102770007.json">Narayangaon-152102770007</div><div class="select-option" data-value="JUNNAR/152102770008.json">Yedgaon-152102770008</div><div class="select-option" data-value="JUNNAR/152102770009.json">Gaymukhwadi-152102770009</div><div class="select-option" data-value="JUNNAR/152102770010.json">Barav-152102770010</div><div class="select-option" data-value="JUNNAR/152102770011.json">Junnar-152102770011</div><div class="select-option" data-value="JUNNAR/152102770012.json">Narayangaon-152102770012</div><div class="select-option" data-value="JUNNAR/152102770013.json">Junnar-152102770013</div><div class="select-option" data-value="JUNNAR/152102770014.json">Khireshwar-152102770014</div><div class="select-option" data-value="JUNNAR/152102770015.json">Shiroli-152102770015</div><div class="select-option" data-value="JUNNAR/152102770016.json">Dhangarwadi-152102770016</div><div class="select-option" data-value="JUNNAR/152102770017.json">Kolwadi-152102770017</div><div class="select-option" data-value="JUNNAR/152102770018.json">Mandarne-152102770018</div><div class="select-option" data-value="JUNNAR/152102770019.json">Dumbarwadi-152102770019</div><div class="select-option" data-value="JUNNAR/152102770020.json">Kuran-152102770020</div><div class="select-option" data-value="JUNNAR/152102770021.json">Somatwadi-152102770021</div>
+            <!-- <div class="select-option" data-value="all">All Files</div> -->
+          </div>
+        </div>
+
+        <div class="search-container" id="searchContainer">
+          <input
+            type="text"
+            id="search"
+            placeholder="आधारकार्ड नंबर शेवटचे ४ किंवा रेशन नंबर, नावाने शोधा..."
+          />
+        </div>
+      </div>
+
+      <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <!-- <p>Select load data...</p> -->
+      </div>
+
+      <div class="table-wrapper">
+        <div id="results"></div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // DOM elements
+        const selectHeader = document.getElementById("select-header");
+        const selectOptions = document.getElementById("select-options");
+        const selectedOption = document.getElementById("selected-option");
+        const optionSearch = document.getElementById("option-search");
+        const allOptions = document.querySelectorAll(
+          ".select-option:not(:first-child)"
+        );
+        const arrow = document.querySelector(".arrow");
+        const searchInput = document.getElementById("search");
+        const resultsDiv = document.getElementById("results");
+        const loadingDiv = document.getElementById("loading");
+        const fileTitleSpan = document.getElementById("file-title");
+        const searchContainer = document.getElementById("searchContainer");
+
+        searchContainer.style.display = "none";
+
+        loadingDiv.style.display = "none";
+
+        // Data variables
+        let allData = [];
+        let currentData = [];
+
+        // Toggle dropdown visibility
+        selectHeader.addEventListener("click", function (e) {
+          e.stopPropagation();
+          selectOptions.classList.toggle("visible");
+          arrow.classList.toggle("open");
+
+          if (selectOptions.classList.contains("visible")) {
+            searchInput.value="";
+            optionSearch.focus();
+          }
+        });
+
+        // Filter options based on search input
+        optionSearch.addEventListener("input", function () {
+          const searchTerm = this.value.toLowerCase();
+          allOptions.forEach((option) => {
+            const text = option.textContent.toLowerCase();
+            option.style.display = text.includes(searchTerm) ? "block" : "none";
+          });
+        });
+
+        // Handle option selection
+        document.querySelectorAll(".select-option").forEach((option) => {
+          option.addEventListener("click", function (e) {
+            e.stopPropagation();
+            selectedOption.textContent = this.textContent;
+            selectOptions.classList.remove("visible");
+            arrow.classList.remove("open");
+            optionSearch.value = "";
+            allOptions.forEach((opt) => (opt.style.display = "block"));
+
+            const file = this.getAttribute("data-value");
+            if (file === undefined) return;
+
+            // Update the title based on selection
+            if (file === "all") {
+              fileTitleSpan.textContent = "All Files";
+              loadAllData();
+            } else if (file) {
+              // Extract just the filename without path for display
+              const VillName = this.textContent.split("-")[0];
+              fileTitleSpan.textContent = VillName;
+              loadSingleFile(file);
+              // loadSingleFile(file);
+            } else {
+              fileTitleSpan.textContent = "जुन्नर तालुका";
+            }
+          });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function () {
+          selectOptions.classList.remove("visible");
+          arrow.classList.remove("open");
+        });
+
+        // Prevent dropdown from closing when clicking inside
+        selectOptions.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+
+        // Show loading state with spinner
+        function showLoading(message) {
+          loadingDiv.innerHTML = `
+                    <div class="spinner"></div>
+                    <p>${message}</p>
+                `;
+          loadingDiv.className = "loading";
+          loadingDiv.style.display = "block";
+          searchContainer.style.display = "block";
+        }
+
+        // Show error message
+        function showError(message) {
+          loadingDiv.innerHTML = `<p>${message}</p>`;
+          loadingDiv.className = "error";
+          loadingDiv.style.display = "block";
+        }
+
+        // Hide loading/error messages
+        function hideMessages() {
+          loadingDiv.style.display = "none";
+        }
+
+        // Load all JSON files
+        async function loadAllData() {
+          showLoading("Loading data from all files...");
+          resultsDiv.innerHTML = "";
+
+          try {
+            const files = ["index3/10.json"];
+            const promises = files.map((file) =>
+              fetch(file)
+                .then((res) => {
+                  if (!res.ok)
+                    throw new Error(`Failed to load ${file}: ${res.status}`);
+                  return res.json();
+                })
+                .catch((err) => {
+                  console.error(`Error loading ${file}:`, err);
+                  return [];
+                })
+            );
+
+            const dataArrays = await Promise.all(promises);
+            allData = dataArrays.flat();
+
+            if (allData.length === 0) {
+              throw new Error("No data loaded from any files");
+            }
+
+            currentData = [...allData];
+            displayData(currentData);
+            hideMessages();
+          } catch (error) {
+            showError("Error loading data: " + error.message);
+            console.error("Error loading data:", error);
+          }
+        }
+
+        // Load single JSON file
+        async function loadSingleFile(file) {
+          showLoading(`KYC Pending यादी दाखवत आहे...`);
+          resultsDiv.innerHTML = "";
+
+          try {
+            const response = await fetch(file);
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            currentData = await response.json();
+
+            if (!Array.isArray(currentData)) {
+              throw new Error("Loaded data is not an array");
+            }
+
+            displayData(currentData);
+            hideMessages();
+          } catch (error) {
+            showError(`Error loading ${file}: ${error.message}`);
+            console.error(`Error loading ${file}:`, error);
+          }
+        }
+
+        // Display data in a responsive table
+        function displayData(data) {
+          if (data.length === 0) {
+            resultsDiv.innerHTML =
+              '<p class="error">यादी दाखवत नाही, KYC झालेली असेल.</p>';
+            return;
+          }
+          // <th>SrNo</th>
+          // <th>Member Id</th>
+          // <th>Office</th>
+          let html = `<p class="results-info">${data.length} KYC राहिलेली नावे दाखवत आहे</p>
+                    <table>
+                        <thead>
+                            <tr>
+                               
+                                <th>रेशन नंबर</th>
+                               
+                                <th>नाव</th>
+                                <th>आधार नंबर</th>
+                                <th>लिंग</th>
+                                <th>प्रकार</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+          data.forEach((item) => {
+            // <td>${item.SrNo}</td>
+            //  <td>${item.MemberId}</td>
+            // <td>${item.Office}</td>
+            html += `
+                        <tr>
+                           
+                            <td>${item.RC_Id}</td>
+                           
+                            <td>${item.MemberName}</td>
+                            <td>${item.UID}</td>
+                            <td>${item.Gender}</td>
+                            <td>${item.Scheme}</td>
+                        </tr>
+                    `;
+          });
+
+          html += `
+                        </tbody>
+                    </table> `;
+          // <p class="results-info">Showing ${data.length} records</p>
+
+          resultsDiv.innerHTML = html;
+        }
+
+        // Filter data based on search input
+        function filterData() {
+          const searchTerm = searchInput.value.toLowerCase();
+
+          if (!searchTerm) {
+            displayData(currentData);
+            return;
+          }
+
+          const filtered = currentData.filter(
+            (item) =>
+              item.RC_Id.toLowerCase().includes(searchTerm) ||
+              item.MemberName.toLowerCase().includes(searchTerm) ||
+              item.UID.toLowerCase().includes(searchTerm)
+          );
+          displayData(filtered);
+        }
+
+        // Initialize
+        searchInput.addEventListener("input", filterData);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+[
+  {
+    "SrNo": 1,
+    "District": "Pune Dso",
+    "Office": "AMBEGAON",
+    "FPS_Id": " 152102200003",
+    "RC_Id": " 272030020054",
+    "MemberId": " 27203002005403",
+    "MemberName": "samruddhi tanaji shinde",
+    "Gender": "Male",
+    "UID": "XXXX-XXXX-1810",
+    "Scheme Type": "NFSA",
+    "Scheme": "PHH"
+  },
+  {
+    "SrNo": 2,
+    "District": "Pune Dso",
+    "Office": "AMBEGAON",
+    "FPS_Id": " 152102200003",
+    "RC_Id": " 272030020062",
+    "MemberId": " 27203002006201",
+    "MemberName": "poonam kalpesh bhor",
+    "Gender": "Male",
+    "UID": "XXXX-XXXX-8170",
+    "Scheme Type": "NFSA",
+    "Scheme": "PHH"
+  }
+]

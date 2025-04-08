@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>आंबेगाव तालुका गावांची रेशन KYC pending यादी</title>
+   <meta name="description" content="">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://krishnawaghmode.github.io/indapur-ekyc-pending">
+<meta property="og:type" content="website">
+<meta property="og:title" content="आंबेगाव तालुका गावांची रेशन KYC pending यादी">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://krishnawaghmode.github.io/indapur-ekyc-pending/ration.jpeg">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="krishnawaghmode.github.io">
+<meta property="twitter:url" content="https://krishnawaghmode.github.io/indapur-ekyc-pending">
+<meta name="twitter:title" content="आंबेगाव तालुका गावांची रेशन KYC pending यादी">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://krishnawaghmode.github.io/indapur-ekyc-pending/ration.jpeg">
+    <style>
+      :root {
+        --primary-color: #4caf50;
+        --primary-hover: #45a049;
+        --primary-active: #2e7d32;
+        --border-color: #ddd;
+        --text-color: #333;
+        --light-bg: #f5f5f5;
+        --white: #fff;
+        --pending-color: #ff9800;
+        --success-color: #4caf50;
+        --error-color: #f44336;
+        --table-even: #f9f9f9;
+        --table-hover: #f1f1f1;
+        --table-header: #f2f2f2;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 15px;
+        background-color: var(--light-bg);
+        color: var(--text-color);
+        line-height: 1.6;
+        font-size: 16px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: var(--white);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        /* text-align: center;
+        margin-bottom: 20px;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        color: var(--primary-active); */
+        font-size: 20px;
+        /* margin: 0 0 15px 0; */
+        text-align: center;
+        color: #333;
+      }
+
+      h1 span {
+        /* font-weight: normal; */
+        color: var(--text-color);
+      }
+
+      .control-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 10px;
+      }
+
+      @media (min-width: 768px) {
+        .control-panel {
+          flex-direction: row;
+          align-items: flex-end;
+        }
+      }
+
+      .custom-select {
+        position: relative;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .select-header {
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background-color: var(--white);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .select-header:hover {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+      }
+
+      .select-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background-color: var(--white);
+        max-height: 250px;
+        overflow-y: auto;
+        display: none;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        margin-top: 5px;
+      }
+
+      .select-options.visible {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .search-box {
+        padding: 12px;
+        width: calc(100% - 24px);
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        outline: none;
+        margin: 8px 12px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+      }
+
+      .search-box:focus {
+        border-bottom-color: var(--primary-color);
+      }
+
+      .select-option {
+        padding: 12px 15px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .select-option:hover {
+        background-color: rgba(76, 175, 80, 0.1);
+      }
+
+      .select-option.selected {
+        background-color: rgba(76, 175, 80, 0.2);
+        font-weight: 600;
+      }
+
+      .search-container {
+        flex: 1;
+        min-width: 0;
+      }
+
+      #search {
+        padding: 12px 15px;
+        width: 100%;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.3s;
+      }
+
+      #search:focus {
+        border-color: var(--primary-color);
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+      }
+
+      .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        margin-top: 10px;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px;
+      }
+
+      th,
+      td {
+        border: 1px solid var(--border-color);
+        padding: 12px 15px;
+        text-align: left;
+      }
+
+      th {
+        background-color: var(--table-header);
+        position: sticky;
+        top: 0;
+        font-weight: 600;
+        color: var(--text-color);
+      }
+
+      tr:nth-child(even) {
+        background-color: var(--table-even);
+      }
+
+      tr:hover {
+        background-color: var(--table-hover);
+      }
+
+      .status-pending {
+        color: var(--pending-color);
+        font-weight: 600;
+      }
+
+      .status-success {
+        color: var(--success-color);
+        font-weight: 600;
+      }
+
+      .loading,
+      .error {
+        text-align: center;
+        padding: 30px;
+        margin: 20px 0;
+        border-radius: 6px;
+      }
+
+      .loading {
+        color: #666;
+        background-color: rgba(0, 0, 0, 0.02);
+      }
+
+      .error {
+        color: var(--error-color);
+        font-weight: 600;
+        background-color: rgba(244, 67, 54, 0.05);
+        border: 1px solid rgba(244, 67, 54, 0.2);
+      }
+
+      .arrow {
+        border: solid var(--text-color);
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 4px;
+        transform: rotate(45deg);
+        transition: transform 0.3s;
+        margin-left: 10px;
+      }
+
+      .arrow.open {
+        transform: rotate(-135deg);
+      }
+
+      .results-info {
+        font-size: 14px;
+        color: #dd3a3a;
+        text-align: left;
+        margin-left: 5px;
+      }
+
+      /* Loading spinner */
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid var(--primary-color);
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 15px;
+      }
+
+      /* Mobile optimizations */
+      @media (max-width: 767px) {
+        .container {
+          padding: 15px;
+        }
+
+        th,
+        td {
+          padding: 10px 12px;
+          font-size: 14px;
+        }
+
+        .select-header,
+        #search {
+          padding: 10px 12px;
+        }
+
+        .loading,
+        .error {
+          padding: 20px 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 10px;
+        }
+
+        th,
+        td {
+          padding: 8px 10px;
+          font-size: 13px;
+        }
+
+        .select-option {
+          padding: 10px 12px;
+        }
+      }
+
+      /* Print styles */
+      @media print {
+        body {
+          background: none;
+          padding: 0;
+          font-size: 12pt;
+        }
+
+        .container {
+          box-shadow: none;
+          padding: 0;
+          max-width: 100%;
+        }
+
+        .control-panel,
+        #search,
+        .custom-select {
+          display: none;
+        }
+
+        table {
+          min-width: 100%;
+        }
+
+        th,
+        td {
+          padding: 8px 10px;
+        }
+      }
+    </style>
+      <link rel="stylesheet" href="marquee.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        <span id="file-title" style="color: #d57914ee;text-decoration: underline;">आंबेगाव तालुका</span> 
+        गावांची रेशन KYC pending यादी
+      </h1>
+      <a href="index.html" 
+      style="display: flex; align-items: center; justify-content: center; padding: 5px 5px;
+             background-color: #2196F3; color: white; text-decoration: none; border-radius: 6px;
+             transition: all 0.3s; text-align: center; font-size: 15px; 
+             box-shadow: 0 2px 5px rgba(0,0,0,0.1); font-weight: bold;
+             margin: 0; border: none; cursor: pointer;"
+      onmouseover="this.style.backgroundColor='#0b7dda';this.style.transform='translateY(-3px)';this.style.boxShadow='0 4px 8px rgba(0,0,0,0.15)'"
+      onmouseout="this.style.backgroundColor='#2196F3';this.style.transform='none';this.style.boxShadow='0 2px 5px rgba(0,0,0,0.1)'">
+     <!-- होम -->
+     मुख्यपृष्ठ
+   </a>
+      <p style=" text-align: center; ">अधिक माहितीसाठी संपर्क करा 
+
+        <!-- <a href="tel:8600064713" style=" font-weight: bold; color: #eb0e0e; ">8600064713</a>  -->
+        <a href="tel:8600064713" rel="noopener" style=" font-weight: bold; color: #eb0e0e; ">
+ <svg height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+<path style="fill:#EDEDED;" d="M0,512l35.31-128C12.359,344.276,0,300.138,0,254.234C0,114.759,114.759,0,255.117,0
+    S512,114.759,512,254.234S395.476,512,255.117,512c-44.138,0-86.51-14.124-124.469-35.31L0,512z"></path>
+<path style="fill:#55CD6C;" d="M137.71,430.786l7.945,4.414c32.662,20.303,70.621,32.662,110.345,32.662
+    c115.641,0,211.862-96.221,211.862-213.628S371.641,44.138,255.117,44.138S44.138,137.71,44.138,254.234
+    c0,40.607,11.476,80.331,32.662,113.876l5.297,7.945l-20.303,74.152L137.71,430.786z"></path>
+<path style="fill:#FEFEFE;" d="M187.145,135.945l-16.772-0.883c-5.297,0-10.593,1.766-14.124,5.297
+    c-7.945,7.062-21.186,20.303-24.717,37.959c-6.179,26.483,3.531,58.262,26.483,90.041s67.09,82.979,144.772,105.048
+    c24.717,7.062,44.138,2.648,60.028-7.062c12.359-7.945,20.303-20.303,22.952-33.545l2.648-12.359
+    c0.883-3.531-0.883-7.945-4.414-9.71l-55.614-25.6c-3.531-1.766-7.945-0.883-10.593,2.648l-22.069,28.248
+    c-1.766,1.766-4.414,2.648-7.062,1.766c-15.007-5.297-65.324-26.483-92.69-79.448c-0.883-2.648-0.883-5.297,0.883-7.062
+    l21.186-23.834c1.766-2.648,2.648-6.179,1.766-8.828l-25.6-57.379C193.324,138.593,190.676,135.945,187.145,135.945"></path>
+</svg>
+  8600064713
+</a>
+<div class="marquee">
+  <div class="marquee-content">
+    रेशनकार्डची सर्व कामे ऑनलाईन करून मिळतील - नवीन मतदान कार्ड व दुरुस्ती - आधारकार्ड तुमच्या बँक खात्याशी लिंक करणे :- <strong>आरोही इंटरप्रायजेस बोरी रोड काझड</strong>
+  </div>
+</div>
+
+    </p>
+      <div class="control-panel">
+        <div class="custom-select" id="file-selector">
+          <div class="select-header" id="select-header">
+            <span id="selected-option">गाव किंवा रेशन दुकान नंबर निवडा</span>
+            <span class="arrow"></span>
+          </div>
+          <div class="select-options" id="select-options">
+            <input
+              type="text"
+              class="search-box"
+              id="option-search"
+              placeholder="तुमचं गाव किंवा रेशन दुकान नंबर शोधा..."
+            />
+            <!-- <div
+              class="select-option"
+              data-value=""
+              style="display: block"
+            ></div> -->
+          <div class="select-option" data-value="AMBEGAON/152102200003.json">Awasari-152102200003</div><div class="select-option" data-value="AMBEGAON/152102200004.json">Bhorwadi-152102200004</div><div class="select-option" data-value="AMBEGAON/152102200005.json">Bhorwadi-152102200005</div><div class="select-option" data-value="AMBEGAON/152102200009.json">Khadakamala-152102200009</div><div class="select-option" data-value="AMBEGAON/152102200012.json">Pargaon-152102200012</div><div class="select-option" data-value="AMBEGAON/152102200014.json">Bharadi-152102200014</div><div class="select-option" data-value="AMBEGAON/152102200015.json">Jawale-152102200015</div><div class="select-option" data-value="AMBEGAON/152102200018.json">Nirgoodsar-152102200018</div><div class="select-option" data-value="AMBEGAON/152102200019.json">Awasari-152102200019</div><div class="select-option" data-value="AMBEGAON/152102200024.json">Gavdewadi-152102200024</div><div class="select-option" data-value="AMBEGAON/152102200028.json">Pargaon-152102200028</div><div class="select-option" data-value="AMBEGAON/152102200030.json">Jarkarwadi-152102200030</div><div class="select-option" data-value="AMBEGAON/152102200031.json">Kathapur-152102200031</div><div class="select-option" data-value="AMBEGAON/152102200034.json">Lakhangaon-152102200034</div><div class="select-option" data-value="AMBEGAON/152102200036.json">Pahaddara-152102200036</div><div class="select-option" data-value="AMBEGAON/152102200037.json">Khadakwadi-152102200037</div><div class="select-option" data-value="AMBEGAON/152102200041.json">Dhamani-152102200041</div><div class="select-option" data-value="AMBEGAON/152102200045.json">Vadgaon-152102200045</div><div class="select-option" data-value="AMBEGAON/152102200046.json">Mondalewadi-152102200046</div><div class="select-option" data-value="AMBEGAON/152102200047.json">Manchar-152102200047</div><div class="select-option" data-value="AMBEGAON/152102200048.json">Manchar-152102200048</div><div class="select-option" data-value="AMBEGAON/152102200049.json">Manchar-152102200049</div><div class="select-option" data-value="AMBEGAON/152102200050.json">Manchar-152102200050</div><div class="select-option" data-value="AMBEGAON/152102200051.json">Manchar-152102200051</div><div class="select-option" data-value="AMBEGAON/152102200063.json">KOTAMDARA-152102200063</div><div class="select-option" data-value="AMBEGAON/152102200065.json">FADALEWADI-152102200065</div><div class="select-option" data-value="AMBEGAON/152102200066.json">DAREKARWADI-152102200066</div><div class="select-option" data-value="AMBEGAON/152102200067.json">SHINDEWADI-152102200067</div><div class="select-option" data-value="AMBEGAON/152102200068.json">WAYALMALA-152102200068</div><div class="select-option" data-value="AMBEGAON/152102200070.json">GONAWADI-152102200070</div><div class="select-option" data-value="AMBEGAON/152102200077.json">Don-152102200077</div><div class="select-option" data-value="AMBEGAON/152102200078.json">Tirpad-152102200078</div><div class="select-option" data-value="AMBEGAON/152102200080.json">Asane-152102200080</div><div class="select-option" data-value="AMBEGAON/152102200082.json">Borghar-152102200082</div><div class="select-option" data-value="AMBEGAON/152102200084.json">Panchale-152102200084</div><div class="select-option" data-value="AMBEGAON/152102200086.json">Nanavade-152102200086</div><div class="select-option" data-value="AMBEGAON/152102200087.json">Nhaved-152102200087</div><div class="select-option" data-value="AMBEGAON/152102200088.json">Ambegaon-152102200088</div><div class="select-option" data-value="AMBEGAON/152102200089.json">Phulvade-152102200089</div><div class="select-option" data-value="AMBEGAON/152102200090.json">Dimbhe-152102200090</div><div class="select-option" data-value="AMBEGAON/152102200094.json">Nandurkichi-152102200094</div><div class="select-option" data-value="AMBEGAON/152102200095.json">Nigdale-152102200095</div><div class="select-option" data-value="AMBEGAON/152102200096.json">Rajpur-152102200096</div><div class="select-option" data-value="AMBEGAON/152102200097.json">Pokhari-152102200097</div><div class="select-option" data-value="AMBEGAON/152102200099.json">Rajewadi-152102200099</div><div class="select-option" data-value="AMBEGAON/152102200101.json">Gohe-152102200101</div><div class="select-option" data-value="AMBEGAON/152102200102.json">Gohe-152102200102</div><div class="select-option" data-value="AMBEGAON/152102200104.json">Dimbhe-152102200104</div><div class="select-option" data-value="AMBEGAON/152102200106.json">Supedhar-152102200106</div><div class="select-option" data-value="AMBEGAON/152102200108.json">Gangapur-152102200108</div><div class="select-option" data-value="AMBEGAON/152102200109.json">Amondi-152102200109</div><div class="select-option" data-value="AMBEGAON/152102200111.json">Falakewadi-152102200111</div><div class="select-option" data-value="AMBEGAON/152102200112.json">Girawali-152102200112</div><div class="select-option" data-value="AMBEGAON/152102200114.json">Pimpalgaon-152102200114</div><div class="select-option" data-value="AMBEGAON/152102200116.json">Pokharkarwadi-152102200116</div><div class="select-option" data-value="AMBEGAON/152102200118.json">Gangapur-152102200118</div><div class="select-option" data-value="AMBEGAON/152102200119.json">Gangapur-152102200119</div><div class="select-option" data-value="AMBEGAON/152102200122.json">Shinoli-152102200122</div><div class="select-option" data-value="AMBEGAON/152102200125.json">Sal-152102200125</div><div class="select-option" data-value="AMBEGAON/152102200126.json">Ghodegaon-152102200126</div><div class="select-option" data-value="AMBEGAON/152102200133.json">Ghodegaon-152102200133</div><div class="select-option" data-value="AMBEGAON/152102200134.json">Ghodegaon-152102200134</div><div class="select-option" data-value="AMBEGAON/152102200135.json">Ghodegaon-152102200135</div><div class="select-option" data-value="AMBEGAON/152102200136.json">Ghodegaon-152102200136</div><div class="select-option" data-value="AMBEGAON/152102200139.json">Chincholi-152102200139</div><div class="select-option" data-value="AMBEGAON/152102200140.json">Kadewadi-152102200140</div><div class="select-option" data-value="AMBEGAON/152102200143.json">Chas-152102200143</div><div class="select-option" data-value="AMBEGAON/152102200144.json">Narodi-152102200144</div><div class="select-option" data-value="AMBEGAON/152102200146.json">Chinchodi-152102200146</div><div class="select-option" data-value="AMBEGAON/152102200147.json">Ambedara-152102200147</div><div class="select-option" data-value="AMBEGAON/152102200149.json">Dhakale-152102200149</div><div class="select-option" data-value="AMBEGAON/152102200150.json">Gawarwadi-152102200150</div><div class="select-option" data-value="AMBEGAON/152102200154.json">Mahalunge-152102200154</div><div class="select-option" data-value="AMBEGAON/152102200156.json">Takewadi-152102200156</div><div class="select-option" data-value="AMBEGAON/152102200158.json">Kalamb-152102200158</div><div class="select-option" data-value="AMBEGAON/152102200160.json">Chandoli-152102200160</div><div class="select-option" data-value="AMBEGAON/152102200165.json">Khadaki-152102200165</div><div class="select-option" data-value="AMBEGAON/152102200168.json">Thorandale-152102200168</div><div class="select-option" data-value="AMBEGAON/152102200171.json">Ranjani-152102200171</div><div class="select-option" data-value="AMBEGAON/152102200179.json">Shingave-152102200179</div><div class="select-option" data-value="AMBEGAON/152102200180.json">Vadgaon-152102200180</div><div class="select-option" data-value="AMBEGAON/152102200182.json">Eklahare-152102200182</div><div class="select-option" data-value="AMBEGAON/152102200184.json">Chandoli-152102200184</div><div class="select-option" data-value="AMBEGAON/152102200186.json">Mordewadi-152102200186</div><div class="select-option" data-value="AMBEGAON/152102200188.json">WALUNJNAGAR-152102200188</div><div class="select-option" data-value="AMBEGAON/152102200190.json">Nighutwadi-152102200190</div><div class="select-option" data-value="AMBEGAON/152102200192.json">Kurwandi-152102200192</div><div class="select-option" data-value="AMBEGAON/152102200194.json">Thugaon-152102200194</div><div class="select-option" data-value="AMBEGAON/152102200195.json">Bhawadi-152102200195</div><div class="select-option" data-value="AMBEGAON/152102200196.json">Karegaon-152102200196</div><div class="select-option" data-value="AMBEGAON/152102200197.json">Peth-152102200197</div><div class="select-option" data-value="AMBEGAON/152102200198.json">Peth-152102200198</div><div class="select-option" data-value="AMBEGAON/152102200202.json">Pimpalgaon-152102200202</div><div class="select-option" data-value="AMBEGAON/152102200203.json">Pimpalgaon-152102200203</div><div class="select-option" data-value="AMBEGAON/152102200204.json">Awasari-152102200204</div><div class="select-option" data-value="AMBEGAON/152102200205.json">Awasari-152102200205</div><div class="select-option" data-value="AMBEGAON/152102200249.json">Kondhaval-152102200249</div><div class="select-option" data-value="AMBEGAON/152102200251.json">Adivare-152102200251</div><div class="select-option" data-value="AMBEGAON/152102200255.json">Shewalwadi-152102200255</div><div class="select-option" data-value="AMBEGAON/152102200256.json">Mahalunge-152102200256</div><div class="select-option" data-value="AMBEGAON/152102200257.json">Awasari-152102200257</div><div class="select-option" data-value="AMBEGAON/152102200258.json">Tavharewadi-152102200258</div><div class="select-option" data-value="AMBEGAON/152102200259.json">Tamblemala-152102200259</div><div class="select-option" data-value="AMBEGAON/152102200260.json">Nagapur-152102200260</div><div class="select-option" data-value="AMBEGAON/152102200261.json">Lauki-152102200261</div><div class="select-option" data-value="AMBEGAON/152102200262.json">Gadewadi-152102200262</div><div class="select-option" data-value="AMBEGAON/152102200264.json">Jambhori-152102200264</div><div class="select-option" data-value="AMBEGAON/152102200265.json">Shindemala-152102200265</div><div class="select-option" data-value="AMBEGAON/152102200266.json">Pondewadi-152102200266</div><div class="select-option" data-value="AMBEGAON/152102200267.json">Sakore-152102200267</div><div class="select-option" data-value="AMBEGAON/152102200268.json">Sal-152102200268</div><div class="select-option" data-value="AMBEGAON/152102200270.json">Chikhali-152102200270</div><div class="select-option" data-value="AMBEGAON/152102200271.json">Nandur-152102200271</div><div class="select-option" data-value="AMBEGAON/152102200272.json">Kushire-152102200272</div><div class="select-option" data-value="AMBEGAON/152102200273.json">Nighutwadi-152102200273</div><div class="select-option" data-value="AMBEGAON/152102200274.json">Thakar-152102200274</div><div class="select-option" data-value="AMBEGAON/152102200275.json">Chandoli-152102200275</div><div class="select-option" data-value="AMBEGAON/152102200276.json">Shinoli-152102200276</div><div class="select-option" data-value="AMBEGAON/152102200277.json">Pimpargane-152102200277</div><div class="select-option" data-value="AMBEGAON/152102220002.json">Kalamb-152102220002</div><div class="select-option" data-value="AMBEGAON/152102220003.json">Ahupe-152102220003</div><div class="select-option" data-value="AMBEGAON/152102220004.json">Chandoli-152102220004</div><div class="select-option" data-value="AMBEGAON/152102220005.json">Malin-152102220005</div><div class="select-option" data-value="AMBEGAON/152102220006.json">Sal-152102220006</div><div class="select-option" data-value="AMBEGAON/152102220008.json">Bharadi-152102220008</div><div class="select-option" data-value="AMBEGAON/152102220009.json">Loni-152102220009</div><div class="select-option" data-value="AMBEGAON/152102220010.json">Nigdale-152102220010</div><div class="select-option" data-value="AMBEGAON/152102220011.json">Valati-152102220011</div><div class="select-option" data-value="AMBEGAON/152102220012.json">Chas-152102220012</div>
+            <!-- <div class="select-option" data-value="all">All Files</div> -->
+          </div>
+        </div>
+
+        <div class="search-container" id="searchContainer">
+          <input
+            type="text"
+            id="search"
+            placeholder="आधारकार्ड नंबर शेवटचे ४ किंवा रेशन नंबर, नावाने शोधा..."
+          />
+        </div>
+      </div>
+
+      <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <!-- <p>Select load data...</p> -->
+      </div>
+
+      <div class="table-wrapper">
+        <div id="results"></div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // DOM elements
+        const selectHeader = document.getElementById("select-header");
+        const selectOptions = document.getElementById("select-options");
+        const selectedOption = document.getElementById("selected-option");
+        const optionSearch = document.getElementById("option-search");
+        const allOptions = document.querySelectorAll(
+          ".select-option:not(:first-child)"
+        );
+        const arrow = document.querySelector(".arrow");
+        const searchInput = document.getElementById("search");
+        const resultsDiv = document.getElementById("results");
+        const loadingDiv = document.getElementById("loading");
+        const fileTitleSpan = document.getElementById("file-title");
+        const searchContainer = document.getElementById("searchContainer");
+
+        searchContainer.style.display = "none";
+
+        loadingDiv.style.display = "none";
+
+        // Data variables
+        let allData = [];
+        let currentData = [];
+
+        // Toggle dropdown visibility
+        selectHeader.addEventListener("click", function (e) {
+          e.stopPropagation();
+          selectOptions.classList.toggle("visible");
+          arrow.classList.toggle("open");
+
+          if (selectOptions.classList.contains("visible")) {
+            searchInput.value="";
+            optionSearch.focus();
+          }
+        });
+
+        // Filter options based on search input
+        optionSearch.addEventListener("input", function () {
+          const searchTerm = this.value.toLowerCase();
+          allOptions.forEach((option) => {
+            const text = option.textContent.toLowerCase();
+            option.style.display = text.includes(searchTerm) ? "block" : "none";
+          });
+        });
+
+        // Handle option selection
+        document.querySelectorAll(".select-option").forEach((option) => {
+          option.addEventListener("click", function (e) {
+            e.stopPropagation();
+            selectedOption.textContent = this.textContent;
+            selectOptions.classList.remove("visible");
+            arrow.classList.remove("open");
+            optionSearch.value = "";
+            allOptions.forEach((opt) => (opt.style.display = "block"));
+
+            const file = this.getAttribute("data-value");
+            if (file === undefined) return;
+
+            // Update the title based on selection
+            if (file === "all") {
+              fileTitleSpan.textContent = "All Files";
+              loadAllData();
+            } else if (file) {
+              // Extract just the filename without path for display
+              const VillName = this.textContent.split("-")[0];
+              fileTitleSpan.textContent = VillName;
+              loadSingleFile(file);
+              // loadSingleFile(file);
+            } else {
+              fileTitleSpan.textContent = "आंबेगाव तालुका";
+            }
+          });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", function () {
+          selectOptions.classList.remove("visible");
+          arrow.classList.remove("open");
+        });
+
+        // Prevent dropdown from closing when clicking inside
+        selectOptions.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+
+        // Show loading state with spinner
+        function showLoading(message) {
+          loadingDiv.innerHTML = `
+                    <div class="spinner"></div>
+                    <p>${message}</p>
+                `;
+          loadingDiv.className = "loading";
+          loadingDiv.style.display = "block";
+          searchContainer.style.display = "block";
+        }
+
+        // Show error message
+        function showError(message) {
+          loadingDiv.innerHTML = `<p>${message}</p>`;
+          loadingDiv.className = "error";
+          loadingDiv.style.display = "block";
+        }
+
+        // Hide loading/error messages
+        function hideMessages() {
+          loadingDiv.style.display = "none";
+        }
+
+        // Load all JSON files
+        async function loadAllData() {
+          showLoading("Loading data from all files...");
+          resultsDiv.innerHTML = "";
+
+          try {
+            const files = ["index3/10.json"];
+            const promises = files.map((file) =>
+              fetch(file)
+                .then((res) => {
+                  if (!res.ok)
+                    throw new Error(`Failed to load ${file}: ${res.status}`);
+                  return res.json();
+                })
+                .catch((err) => {
+                  console.error(`Error loading ${file}:`, err);
+                  return [];
+                })
+            );
+
+            const dataArrays = await Promise.all(promises);
+            allData = dataArrays.flat();
+
+            if (allData.length === 0) {
+              throw new Error("No data loaded from any files");
+            }
+
+            currentData = [...allData];
+            displayData(currentData);
+            hideMessages();
+          } catch (error) {
+            showError("Error loading data: " + error.message);
+            console.error("Error loading data:", error);
+          }
+        }
+
+        // Load single JSON file
+        async function loadSingleFile(file) {
+          showLoading(`KYC Pending यादी दाखवत आहे...`);
+          resultsDiv.innerHTML = "";
+
+          try {
+            const response = await fetch(file);
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            currentData = await response.json();
+
+            if (!Array.isArray(currentData)) {
+              throw new Error("Loaded data is not an array");
+            }
+
+            displayData(currentData);
+            hideMessages();
+          } catch (error) {
+            showError(`Error loading ${file}: ${error.message}`);
+            console.error(`Error loading ${file}:`, error);
+          }
+        }
+
+        // Display data in a responsive table
+        function displayData(data) {
+          if (data.length === 0) {
+            resultsDiv.innerHTML =
+              '<p class="error">यादी दाखवत नाही, KYC झालेली असेल.</p>';
+            return;
+          }
+          // <th>SrNo</th>
+          // <th>Member Id</th>
+          // <th>Office</th>
+          let html = `<p class="results-info">${data.length} KYC राहिलेली नावे दाखवत आहे</p>
+                    <table>
+                        <thead>
+                            <tr>
+                               
+                                <th>रेशन नंबर</th>
+                               
+                                <th>नाव</th>
+                                <th>आधार नंबर</th>
+                                <th>लिंग</th>
+                                <th>प्रकार</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+          data.forEach((item) => {
+            // <td>${item.SrNo}</td>
+            //  <td>${item.MemberId}</td>
+            // <td>${item.Office}</td>
+            html += `
+                        <tr>
+                           
+                            <td>${item.RC_Id}</td>
+                           
+                            <td>${item.MemberName}</td>
+                            <td>${item.UID}</td>
+                            <td>${item.Gender}</td>
+                            <td>${item.Scheme}</td>
+                        </tr>
+                    `;
+          });
+
+          html += `
+                        </tbody>
+                    </table> `;
+          // <p class="results-info">Showing ${data.length} records</p>
+
+          resultsDiv.innerHTML = html;
+        }
+
+        // Filter data based on search input
+        function filterData() {
+          const searchTerm = searchInput.value.toLowerCase();
+
+          if (!searchTerm) {
+            displayData(currentData);
+            return;
+          }
+
+          const filtered = currentData.filter(
+            (item) =>
+              item.RC_Id.toLowerCase().includes(searchTerm) ||
+              item.MemberName.toLowerCase().includes(searchTerm) ||
+              item.UID.toLowerCase().includes(searchTerm)
+          );
+          displayData(filtered);
+        }
+
+        // Initialize
+        searchInput.addEventListener("input", filterData);
+      });
+    </script>
+  </body>
+</html>
